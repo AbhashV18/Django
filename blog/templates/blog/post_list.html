@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Мій блог</title>
+</head>
+<body>
+    <h1>Пости</h1>
+
+    {% for post in posts %}
+        <div>
+            <h2>
+                <a href="{% url 'post_detail' pk=post.pk %}">
+                    {{ post.title }}
+                </a>
+            </h2>
+            <p><small>Автор: {{ post.author }} | Опубліковано: {{ post.published_date }}</small></p>
+            <p>{{ post.text|truncatechars:200 }}</p>
+        </div>
+        <hr>
+    {% empty %}
+        <p>Ще немає постів.</p>
+    {% endfor %}
+</body>
+</html>

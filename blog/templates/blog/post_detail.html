@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ post.title }}</title>
+</head>
+<body>
+    <a href="{% url 'post_list' %}">← Назад до списку</a>
+    <h1>{{ post.title }}</h1>
+    <p><small>Автор: {{ post.author }} | Опубліковано: {{ post.published_date }}</small></p>
+    <p>{{ post.text|linebreaksbr }}</p>
+</body>
+</html>
