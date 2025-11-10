@@ -1,25 +1,23 @@
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-    <meta charset="UTF-8">
-    <title>Мій блог</title>
-</head>
-<body>
-    <h1>Пости</h1>
+{% extends "blog/base.html" %}
 
+{% block content %}
+    <h2>Пости</h2>
+    <a href="{% url 'post_new' %}">+ Новий пост</a>
     {% for post in posts %}
-        <div>
-            <h2>
+        <article class="post">
+            <h3>
                 <a href="{% url 'post_detail' pk=post.pk %}">
                     {{ post.title }}
                 </a>
-            </h2>
-            <p><small>Автор: {{ post.author }} | Опубліковано: {{ post.published_date }}</small></p>
+            </h3>
+            <p class="meta">
+                Автор: {{ post.author }} |
+                Опубліковано: {{ post.published_date|date:"d.m.Y H:i" }}
+            </p>
             <p>{{ post.text|truncatechars:200 }}</p>
-        </div>
+        </article>
         <hr>
     {% empty %}
         <p>Ще немає постів.</p>
     {% endfor %}
-</body>
-</html>
+{% endblock %}

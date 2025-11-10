@@ -1,13 +1,14 @@
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ post.title }}</title>
-</head>
-<body>
-    <a href="{% url 'post_list' %}">← Назад до списку</a>
-    <h1>{{ post.title }}</h1>
-    <p><small>Автор: {{ post.author }} | Опубліковано: {{ post.published_date }}</small></p>
-    <p>{{ post.text|linebreaksbr }}</p>
-</body>
-</html>
+{% extends "blog/base.html" %}
+
+{% block content %}
+    <article class="post">
+        <a href="{% url 'post_edit' pk=post.pk %}">✏️ Редагувати</a>
+        <a href="{% url 'post_list' %}">← Назад до списку</a>
+        <h2>{{ post.title }}</h2>
+        <p class="meta">
+            Автор: {{ post.author }} |
+            Опубліковано: {{ post.published_date|date:"d.m.Y H:i" }}
+        </p>
+        <p>{{ post.text|linebreaksbr }}</p>
+    </article>
+{% endblock %}
